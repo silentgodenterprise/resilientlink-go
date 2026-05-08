@@ -23,6 +23,7 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:    # ← add this line
 
 jobs:
   validate:
