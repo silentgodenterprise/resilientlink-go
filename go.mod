@@ -1,3 +1,3 @@
-module github.com/resilientlink/resilientlink-go
+module github.com/silentgodenterprise/resilientlink-go
 
 go 1.21
