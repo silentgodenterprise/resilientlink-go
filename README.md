@@ -1,6 +1,6 @@
 # ResilientLink Go SDK
 
-Official Go client for the [ResilientLink](https://resilientlink.io) Web Scraping API.
+Official Go client for the [ResilientLink](https://resilientlink.silentgode.com) Web Scraping API.
 
 ## Installation
 
@@ -67,7 +67,6 @@ result, err := client.ScrapeWithContext(ctx, "https://example.com", nil)
 result.Success         // bool
 result.Cached          // bool
 result.Tier            // "free" | "starter" | "pro" | "enterprise"
-result.Engine          // "axios" | "puppeteer-stealth" | ...
 result.ResponseTime    // int (ms)
 result.Data.Title      // string
 result.Data.Description
@@ -107,4 +106,4 @@ client := resilientlink.New("YOUR_API_KEY",
 
 ## Get Your API Key
 
-Sign up at [resilientlink.io](https://resilientlink.io) → Dashboard → API Key.
+Sign up at [resilientlink](https://resilientlink.silentgode.com) → Dashboard → API Key.
