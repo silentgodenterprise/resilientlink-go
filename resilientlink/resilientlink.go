@@ -23,7 +23,7 @@ import (
 )
 
 const (
-	defaultBaseURL = "https://resilientlink-api.vercel.app"
+	defaultBaseURL = "https://api.resilientlink.silentgode.com"
 	defaultTimeout = 60 * time.Second
 	sdkVersion     = "1.0.0"
 )
@@ -106,7 +106,6 @@ type ScrapeResult struct {
 	Success      bool       `json:"success"`
 	Cached       bool       `json:"cached"`
 	Tier         string     `json:"tier"`
-	Engine       string     `json:"engine"`
 	ResponseTime int        `json:"responseTime"`
 	StatusCode   int        `json:"statusCode"`
 	Data         *ScrapData `json:"data"`
