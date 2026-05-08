@@ -1,0 +1,53 @@
+# ─────────────────────────────────────────────────────────────
+#  ResilientLink Go SDK — Validate & Tag
+#  Repo: silentgodenterprise/resilientlink-go
+#
+#  HOW GO MODULES WORK (different from all other registries):
+#  Go does NOT have a central registry you upload to.
+#  `go get github.com/silentgodenterprise/resilientlink-go`
+#  fetches DIRECTLY from this GitHub repo.
+#
+#  The moment you push a public tag (v1.0.0), it's installable
+#  worldwide — no account, no upload, nothing else needed.
+#
+#  This workflow validates the code compiles correctly on every
+#  tag push, and registers the version with the Go module proxy
+#  (proxy.golang.org) which caches it for faster installs.
+#
+#  NO secrets required for Go.
+# ─────────────────────────────────────────────────────────────
+
+name: Validate & Register Go Module
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+
+      - name: Verify module
+        run: go vet ./...
+
+      - name: Build
+        run: go build ./...
+
+      - name: Warm up Go module proxy cache
+        # This tells proxy.golang.org to index your new version immediately
+        # so `go get` works instantly worldwide without waiting for the proxy
+        # to discover it organically (can take up to 30 min otherwise).
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          MODULE="github.com/silentgodenterprise/resilientlink-go"
+          curl -s "https://proxy.golang.org/${MODULE}/@v/${VERSION}.info" || true
+          echo "Go module proxy notified for ${MODULE}@${VERSION}"
