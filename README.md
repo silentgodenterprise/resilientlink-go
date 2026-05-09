@@ -5,7 +5,7 @@ Official Go client for the [ResilientLink](https://resilientlink.silentgode.com)
 ## Installation
 
 ```bash
-go get github.com/resilientlink/resilientlink-go
+go get github.com/silentgodenterprise/resilientlink-go
 ```
 
 ## Quick Start
@@ -16,7 +16,7 @@ package main
 import (
     "fmt"
     "log"
-    "github.com/resilientlink/resilientlink-go/resilientlink"
+    "github.com/silentgodenterprise/resilientlink-go/resilientlink"
 )
 
 func main() {
